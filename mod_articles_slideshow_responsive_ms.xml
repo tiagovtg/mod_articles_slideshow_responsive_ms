@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="module" version="1" client="site" method="upgrade">
+	<name>Artigos - Slide Show Responsive</name>
+	<author>Tiago Garcia</author>
+	<creationDate>Agosto 2013</creationDate>
+	<copyright></copyright>
+	<license>GNU General Public License version 2 ou later</license>
+	<authorEmail>tiagovtg@gmail.com</authorEmail>
+	<version>3.x</version>
+	<description>Modulo para imagens de artigos no formato slide show responsive.</description>
+
+	<files>
+		<folder>assets</folder>
+		<folder>language</folder>
+		<folder>tmpl</folder>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+		<filename module="mod_articles_slideshow_responsive_ms">mod_articles_slideshow_responsive_ms.php</filename>
+		<filename>mod_articles_slideshow_responsive_ms.xml</filename>
+	</files>
+
+	<languages folder="language">
+		<language tag="pt-BR">pt-BR/pt-BR.mod_articles_slideshow_responsive_ms.ini</language>
+		<language tag="pt-BR">pt-BR/pt-BR.mod_articles_slideshow_responsive_ms.sys.ini</language>
+	</languages>
+	<help key="JHELP_EXTENSIONS_MODULE_MANAGER_MOST_READ" />
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+
+				<field name="catid"	type="category"	extension="com_content"	multiple="true"	default=""	size="10"	label="JCATEGORY"
+					description="MOD_ARTICLES_RESLIDER_FIELD_CATEGORY_DESC" >
+					<option value="">JOPTION_ALL_CATEGORIES</option>
+				</field>
+
+				<field
+					name="item_title"
+					class="btn-group"
+					type="radio"
+					default="0"
+					label="MOD_ARTICLES_RESLIDER_FIELD_INTROTEXT_LABEL"
+					description="MOD_ARTICLES_RESLIDER_FIELD_INTROTEXT_DESC">
+					<option	value="1">JYES</option>
+					<option	value="0">JNO</option>
+				</field>
+
+				<field
+					name="count"
+					type="text"
+					default="5"
+					label="MOD_ARTICLES_RESLIDER_FIELD_ITEMS_LABEL"
+					description="MOD_ARTICLES_RESLIDER_FIELD_ITEMS_DESC" />
+
+				<field
+					name="ordering"
+					type="list"
+					default="a.ordering"
+					label="MOD_ARTICLES_RESLIDER_FIELD_ORDERING_LABEL"
+					description="MOD_ARTICLES_RESLIDER_FIELD_ORDERING_DESC">
+					<option
+						value="a.publish_up">MOD_ARTICLES_RESLIDER_FIELD_ORDERING_PUBLISHED_DATE</option>
+					<option
+						value="a.created">MOD_ARTICLES_RESLIDER_FIELD_ORDERING_CREATED_DATE</option>
+					<option
+						value="a.ordering">MOD_ARTICLES_RESLIDER_FIELD_ORDERING_ORDERING</option>
+					<option
+						value="rand()">MOD_ARTICLES_RESLIDER_FIELD_ORDERING_RANDOM</option>
+				</field>
+
+
+				<field name="uselinks" class="btn-group"
+					type="radio"
+					default="1" label="Usar links das imagens?" description="Turn on ou off ability to link slides">
+					<option	value="1">JYES</option>
+					<option	value="0">JNO</option>
+				</field>
+
+				<field name="linkArtigoExternoA" class="btn-group"
+					type="radio"
+					default="1" label="Link do Artigo/ Externo A?" description="Usa o link do artigo ou link cadastrado no campo link A">
+					<option	value="1">Artigo</option>
+					<option	value="0">Externo A</option>
+				</field>
+
+				<field
+				name="mostrar_barra"
+				class="btn-group"
+				type="radio"
+				default="1"
+				label="Mostrar Barra de Links"
+				description="">
+				<option	value="1">JYES</option>
+				<option	value="0">JNO</option>
+				</field>
+
+			<field
+				name="link_categoria"
+				class="btn-group"
+				type="radio"
+				default="1"
+				label="Mostrar + Conteúdo"
+				description="">
+				<option
+					value="1">JYES</option>
+				<option
+					value="0">JNO</option>
+			</field>
+
+			<field
+				name="titulo_mais_conteudo"
+				type="text"
+				label="Titulo + Conteúdo"
+				description="" />
+
+			<field
+				name="link_feed"
+				class="btn-group"
+				type="radio"
+				default="1"
+				label="Mostrar Links de Feed/Rss"
+				description="">
+				<option
+					value="1">JYES</option>
+				<option
+					value="0">JNO</option>
+			</field>
+
+			<field
+				name="link_opcional1"
+				class="btn-group"
+				type="radio"
+				default="0"
+				label="Mostrar Link Opcional 1"
+				description="">
+				<option
+					value="1">JYES</option>
+				<option
+					value="0">JNO</option>
+			</field>
+
+			<field
+				name="titulo_link1"
+				type="text"
+				label="Titulo do Link 1"
+				description="" />
+
+			<field
+				name="link1"
+				type="text"
+				label="Link 1"
+				description="" />
+
+
+			<field
+				name="link_opcional2"
+				class="btn-group"
+				type="radio"
+				default="0"
+				label="Mostrar Link Opcional 2"
+				description="">
+				<option
+					value="1">JYES</option>
+				<option
+					value="0">JNO</option>
+			</field>
+
+			<field
+				name="titulo_link2"
+				type="text"
+				label="Titulo do Link 2"
+				description="" />
+
+			<field
+				name="link2"
+				type="text"
+				label="Link 2"
+				description="" />
+			</fieldset>
+
+			<fieldset name="moreoptions" label="Personalizadas">
+				<field name="moduleclass_sfx" type="text" label="moduleclass_sfx"
+						description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"/>
+				<field
+					name="load_jquery"
+					class="btn-group"
+					type="radio"
+					default="0"  label="Habilitar jQuery 1.7.2?" description="Turn on ou off inlcuded jQuery. Will also call in a noconflict script because we're lovely here at Code7.">
+					<option	value="1">JYES</option>
+					<option	value="0">JNO</option>
+				</field>
+				<field
+					name="fadeorslide" class="btn-group" type="radio"
+					default="0" label="Fade ou Slide?" description="Choose whether the slider will fade ou slide between slides">
+					<option value="0">Slide</option>
+					<option value="1">Fade</option>
+				</field>
+				<field name="directionNav" class="btn-group"
+					type="radio"
+					default="0" label="Usar navegadores de direção?" description="Turn on ou off left/right buttons">
+					<option	value="1">JYES</option>
+					<option	value="0">JNO</option>
+				</field>
+
+				<field
+					name="controlNav"
+					class="btn-group"
+					type="radio"
+					default="1"
+					label="Usar controle de navegação?"
+					description="Turn on ou off underside control blobs">
+					<option	value="1">JYES</option>
+					<option	value="0">JNO</option>
+				</field>
+
+				<field name="keyboardNav" class="btn-group"
+					type="radio"
+					default="0" label="Usar teclado de navegação?" description="Turn on ou off left and right arrow control of slider">
+					<option	value="1">JYES</option>
+					<option	value="0">JNO</option>
+				</field>
+
+				<field name="direction" class="btn-group"
+					type="radio"
+					default="0" label="Direção: Vertical ou Horizontal" description="Slider images go veritcally ou horizontally">
+					<option value="1">Vertical</option>
+					<option value="0">Horizontal</option>
+				</field>
+
+				<field name="slidespeed" type="text" default="7000" label="Tempo do slide na tela em ms" description="Amount of time a slide remains on screen in milliseconds"/>
+				<field name="animatespeed" type="text" default="600" label="Velocidade de animação do slide em ms" description="Amount of time a slide transition takes in milliseconds"/>
+
+				<field name="randomorder" class="btn-group"
+					type="radio"
+					default="0" label="Ordem randômica?" description="Slider images in random order?">
+					<option	value="1">JYES</option>
+					<option	value="0">JNO</option>
+				</field>
+			</fieldset>
+
+			<fieldset name="advanced">
+				<field name="layout" type="modulelayout" label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC"/>
+
+				<field name="cache" type="list" default="1" label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC">
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+				<field name="cache_time" type="text" default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC"/>
+				<field name="cachemode" type="hidden" default="itemid">
+					<option value="itemid"></option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
